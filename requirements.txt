@@ -1,0 +1,11 @@
+ipython
+langchain-community
+langchain-openai
+langgraph
+langgraph-checkpoint
+python-dotenv
+requests
+pip install flask
+pip install PyPDF2 python-docx
+pip install langchain
+pip install langdetect
