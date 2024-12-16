@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de Projet Étudiant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Analyse de votre projet étudiant</h1>
+        <p>Déposez un fichier pour obtenir un retour détaillé.</p>
+
+        <form id="uploadForm" action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept=".txt,.pdf,.docx,.py,.java,.cpp" required>
+            <button type="submit">Analyser</button>
+        </form>
+
+        <!-- Barre de progression -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Analyse en cours...</p>
+        </div>
+
+        <!-- Résultats -->
+        <div id="feedbackSection" class="feedback-section {% if feedback %} show {% else %} hide {% endif %}">
+            <div class="section" id="generalFeedback">
+                <h2>Retour général</h2>
+                <pre id="generalFeedbackText">{{ feedback | safe }}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Afficher la barre de progression lors de l'analyse
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+            document.getElementById('loading').style.display = 'block';  // Afficher le spinner de chargement
+            document.getElementById('feedbackSection').style.display = 'none'; // Cacher la section de retour
+        });
+    </script>
+</body>
+</html>
